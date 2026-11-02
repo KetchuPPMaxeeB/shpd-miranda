@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Table(name = "services")
 @Getter
 @Setter
-public class Service {
+public class CatalogServiceItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -25,7 +25,7 @@ public class Tariff {
     private String name;
 
     @NotNull
-    @Column(name = "speed")
+    @Column(name = "speed", nullable = false)
     private Integer speed;
 
     @NotNull
