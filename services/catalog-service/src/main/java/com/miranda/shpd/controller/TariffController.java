@@ -1,5 +1,6 @@
 package com.miranda.shpd.controller;
 
+import com.miranda.shpd.dto.TariffDto;
 import com.miranda.shpd.entity.Tariff;
 import com.miranda.shpd.service.TariffService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,12 +19,14 @@ public class TariffController {
     public TariffController(TariffService tariffService) {this.tariffService = tariffService;}
 
     @GetMapping
-    public List<Tariff> findAllTariffs() {
-        return tariffService.findAllTariffs();
+    public List<TariffDto> findAllTariffs() {
+        return tariffService.findAllTariffs().stream()
+                .map(TariffDto::fromEntity)
+                .toList();
     }
 
     @GetMapping("/{id}")
-    public Tariff findTariffById(@PathVariable Long id) {
-        return tariffService.findTariffById(id);
+    public TariffDto findTariffById(@PathVariable Long id) {
+        return TariffDto.fromEntity(tariffService.findTariffById(id));
     }
 }

@@ -1,5 +1,6 @@
 package com.miranda.shpd.controller;
 
+import com.miranda.shpd.dto.CatalogServiceItemDto;
 import com.miranda.shpd.entity.CatalogServiceItem;
 import com.miranda.shpd.service.CatalogServiceItemService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,12 +21,14 @@ public class CatalogServiceItemController {
     }
 
     @GetMapping
-    public List<CatalogServiceItem> findAllCatalogServiceItems() {
-        return catalogServiceItemService.findAllCatalogServiceItems();
+    public List<CatalogServiceItemDto> findAllCatalogServiceItems() {
+        return catalogServiceItemService.findAllCatalogServiceItems().stream()
+                .map(CatalogServiceItemDto::fromEntity)
+                .toList();
     }
 
     @GetMapping("/{id}")
-    public CatalogServiceItem findCatalogServiceItemById(@PathVariable Long id) {
-        return catalogServiceItemService.findCatalogServiceItemById(id);
+    public CatalogServiceItemDto findCatalogServiceItemById(@PathVariable Long id) {
+        return CatalogServiceItemDto.fromEntity(catalogServiceItemService.findCatalogServiceItemById(id));
     }
 }
