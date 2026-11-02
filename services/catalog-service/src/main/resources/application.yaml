@@ -1,3 +1,13 @@
 spring:
   application:
     name: catalog-service
+  datasource:
+    username: catalog
+    url: jdbc:postgresql://localhost:5543/catalog
+    password: catalog_dev
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+server:
+  port: 8081
