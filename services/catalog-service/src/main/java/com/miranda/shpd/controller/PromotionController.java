@@ -1,12 +1,11 @@
 package com.miranda.shpd.controller;
 
+import com.miranda.shpd.dto.PromotionCreateDto;
 import com.miranda.shpd.dto.PromotionDto;
-import com.miranda.shpd.entity.Promotion;
 import com.miranda.shpd.service.PromotionService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,5 +29,22 @@ public class PromotionController {
     @GetMapping("/{id}")
     public PromotionDto findPromotionById(@PathVariable Long id) {
         return PromotionDto.fromEntity(promotionService.findPromotionById(id));
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public PromotionDto createPromotion(@Valid @RequestBody PromotionCreateDto dto) {
+        return PromotionDto.fromEntity(promotionService.createPromotion(dto));
+    }
+
+    @PutMapping("/{id}")
+    public PromotionDto updatePromotion(@PathVariable Long id, @Valid @RequestBody PromotionCreateDto dto) {
+        return PromotionDto.fromEntity(promotionService.updatePromotion(id, dto));
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletePromotion(@PathVariable Long id) {
+        promotionService.deletePromotionById(id);
     }
 }

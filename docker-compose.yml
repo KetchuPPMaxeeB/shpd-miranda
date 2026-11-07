@@ -12,6 +12,19 @@ services:
       - catalog_data:/var/lib/postgresql/data
     networks:
       - microservices-net
+  keycloak:
+    container_name: ms_keycloak
+    image: quay.io/keycloak/keycloak:26.8.1
+    command: start-dev
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin_dev
+    ports:
+      - "8181:8080"
+    volumes:
+      - keycloak-data:\opt\keycloak\data
+    networks:
+      - microservices-net
 
 networks:
   microservices-net:
@@ -19,3 +32,4 @@ networks:
 
 volumes:
   catalog_data:
+  keycloak-data:
