@@ -3,8 +3,7 @@ package com.miranda.shpd.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 
@@ -12,6 +11,9 @@ import java.math.BigDecimal;
 @Table(name = "tariffs")
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Tariff {
 
     @Id

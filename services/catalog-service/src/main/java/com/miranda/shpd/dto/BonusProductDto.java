@@ -5,7 +5,7 @@ import com.miranda.shpd.entity.BonusProduct;
 public record BonusProductDto(
         Long id,
         String name,
-        Integer points_cost,
+        Integer pointsCost,
         String description,
         String type
 ) {

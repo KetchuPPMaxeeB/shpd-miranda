@@ -6,7 +6,7 @@ public record PromotionDto(
         Long id,
         String title,
         String description,
-        String image_url
+        String imageUrl
 ) {
     public static PromotionDto fromEntity(Promotion promotion) {
         return new PromotionDto(

@@ -1,11 +1,11 @@
 package com.miranda.shpd.controller;
 
+import com.miranda.shpd.dto.BonusProductCreateDto;
 import com.miranda.shpd.dto.BonusProductDto;
 import com.miranda.shpd.service.BonusProductService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +29,22 @@ public class BonusProductController {
     @GetMapping("/{id}")
     public BonusProductDto findBonusProductById(@PathVariable Long id) {
         return BonusProductDto.fromEntity(bonusProductService.findBonusProductById(id));
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public BonusProductDto createBonusProduct(@Valid @RequestBody BonusProductCreateDto dto) {
+        return BonusProductDto.fromEntity(bonusProductService.createBonusProduct(dto));
+    }
+
+    @PutMapping("/{id}")
+    public BonusProductDto updateBonusProduct(@PathVariable Long id, @Valid @RequestBody BonusProductCreateDto dto) {
+        return BonusProductDto.fromEntity(bonusProductService.updateBonusProduct(id, dto));
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteBonusProduct(@PathVariable Long id) {
+        bonusProductService.deleteBonusProductById(id);
     }
 }

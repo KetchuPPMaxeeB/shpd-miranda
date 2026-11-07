@@ -34,7 +34,7 @@ public class CatalogServiceItem {
 
     @NotNull
     @Column(name = "is_available", nullable = false)
-    private Boolean isAvailable;
+    private boolean isAvailable;
 
     @Size(max = 255)
     @Column(name = "installation_url")

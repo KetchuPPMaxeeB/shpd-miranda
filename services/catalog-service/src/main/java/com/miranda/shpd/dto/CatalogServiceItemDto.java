@@ -9,8 +9,8 @@ public record CatalogServiceItemDto(
         String name,
         String description,
         BigDecimal price,
-        boolean is_available,
-        String installation_url
+        boolean isAvailable,
+        String installationUrl
 ) {
     public static CatalogServiceItemDto fromEntity(CatalogServiceItem catalogServiceItem) {
         return new CatalogServiceItemDto(
