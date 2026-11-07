@@ -1,0 +1,40 @@
+@id = 2
+
+### Public tariff list
+GET http://localhost:8081/api/tariffs
+Accept: application/json
+
+### Protected query without token
+GET http://localhost:8081/api/auth-check
+
+### Protected query with access token
+GET http://localhost:8081/api/auth-check
+Authorization: Bearer {{$auth.token("keycloak")}}
+
+### Create tariff Private
+POST http://localhost:8081/api/tariffs
+Authorization: Bearer {{$auth.token("keycloak")}}
+Content-Type: application/json
+
+{
+  "name": "Домашний",
+  "speed": 100,
+  "price": 600.00,
+  "description": "Для домашнего использования"
+}
+
+### Update tariff private
+PUT http://localhost:8081/api/tariffs/{{id}}
+Authorization: Bearer {{$auth.token("keycloak")}}
+Content-Type: application/json
+
+{
+  "name": "Дачный",
+  "speed": 200,
+  "price": 123.00,
+  "description": "Для использования на даче"
+}
+
+### Delete tariff private
+DELETE http://localhost:8081/api/tariffs/{{id}}
+Authorization: Bearer {{$auth.token("keycloak")}}
